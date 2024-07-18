@@ -340,6 +340,11 @@ void ListView::setItems(ItemContainer items) noexcept
     m_selected = 0;
     m_startdisp = 0;
 
+    // Sort the items alphabetically
+    std::sort(m_items.begin(), m_items.end(), [](const auto& a, const auto& b) {
+        return a.second.string() < b.second.string();
+    });
+
     for (const auto& item : m_items)
     {
         if (item.first > m_longop)
